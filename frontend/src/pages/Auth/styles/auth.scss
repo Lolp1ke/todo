@@ -1,0 +1,54 @@
+@import "@assets/styles/mixins";
+
+.auth {
+	position: relative;
+	height: 100%;
+	@include flex(column, normal, normal, 20px);
+	flex: 1;
+	margin: 20px 0;
+
+	// .auth__article
+	&__article {
+		@include flex(column, normal, center, 5px);
+	}
+
+	// .auth__title
+	&__title {
+	}
+
+	// .auth__text
+	&__text {
+		text-align: center;
+	}
+
+	// .auth__content
+	&__content {
+		@include flex(column, normal, normal, 20px);
+	}
+
+	// .auth__actions
+	&__actions {
+		@include flex(column, normal, center, 5px);
+		margin-top: auto;
+	}
+
+	// .auth__action
+	&__action {
+		align-self: flex-start;
+		transition: all var(--animation-fast) ease;
+
+		&:hover {
+			color: var(--color-main);
+		}
+	}
+
+	// .auth__submit
+	&__submit {
+		padding: 10px;
+		background-color: var(--color-main);
+		width: 100%;
+		color: #ffffff;
+		font-weight: 600;
+		border-radius: 20px;
+	}
+}

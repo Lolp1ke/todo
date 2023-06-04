@@ -1,0 +1,1 @@
+mongod --dbpath \users\beka8\documents\MongoDB\TodoApp --auth --bind_ip_all

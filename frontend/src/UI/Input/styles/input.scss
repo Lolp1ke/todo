@@ -1,0 +1,24 @@
+@import "@assets/styles/mixins";
+
+.input {
+	position: relative;
+	@include flex(column, normal, normal, 10px);
+
+	// .input__title
+	&__title {
+		font-weight: 500;
+	}
+
+	// .input__input
+	&__input {
+		padding: 10px;
+		border-radius: 10px;
+		border: 1px solid #e0e5ed;
+		background-color: #f6f7f9;
+		transition: all var(--animation-normal) ease;
+
+		&:focus {
+			border: 1px solid var(--color-main);
+		}
+	}
+}
