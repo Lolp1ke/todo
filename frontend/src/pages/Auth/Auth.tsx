@@ -1,16 +1,41 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "@context/AuthContext.tsx";
 
 import "./styles/auth.scss";
 
 import Input from "@UI/Input/Input.tsx";
 
 export default function Auth() {
+	const { currentUser, signIn, signUp } = useAuth();
+	const redirectTo = useNavigate();
+
 	const [isLogin, setIsLogin] = useState<boolean>(false);
 
 	const usernameRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 
-	async function handleSubmitForm() {}
+	async function handleSubmitForm() {
+		if (!usernameRef.current) return;
+		if (!passwordRef.current) return;
+
+		if (isLogin) {
+			signIn({
+				username: usernameRef.current.value,
+				password: passwordRef.current.value,
+			}).then();
+		} else {
+			signUp({
+				username: usernameRef.current.value,
+				password: passwordRef.current.value,
+			}).then();
+		}
+	}
+
+	useEffect(() => {
+		if (currentUser) return redirectTo("/");
+	}, [currentUser]);
 
 	return (
 		<form
@@ -18,7 +43,9 @@ export default function Auth() {
 			onSubmit={(e) => {
 				e.preventDefault();
 				handleSubmitForm().then(() => {
-					// window.location.reload();
+					setTimeout(() => {
+						window.location.reload();
+					}, 1000);
 				});
 			}}
 		>

@@ -4,13 +4,13 @@ import "./styles/input.scss";
 
 interface InputProps {
 	title: string;
-	placeholder: string;
-	type: "text" | "number" | "password" | "email";
+	placeholder?: string;
+	type: "text" | "number" | "password" | "email" | "date";
 }
 
 // export default function Input({ title, placeholder, type }: InputProps) {
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-	const { title, placeholder, type } = props;
+	const { title, placeholder = "", type } = props;
 	return (
 		<div className="input">
 			<h2 className="input__title">{title}</h2>

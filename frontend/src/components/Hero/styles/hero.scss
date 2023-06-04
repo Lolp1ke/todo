@@ -1,0 +1,15 @@
+@import "@assets/styles/mixins.scss";
+
+.hero {
+	position: relative;
+	@include flex(column, normal, normal, 10px);
+	margin: 20px 0;
+
+	// .hero__title
+	&__title {
+	}
+
+	// .hero__text
+	&__text {
+	}
+}

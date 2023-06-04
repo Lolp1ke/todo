@@ -1,0 +1,15 @@
+@import "@assets/styles/mixins.scss";
+
+.account {
+	position: relative;
+	@include flex(column, normal, normal, 10px);
+	// .account__save
+	&__save {
+		margin-top: auto;
+		padding: 10px 15px;
+		background-color: var(--color-main);
+		margin-bottom: 20px;
+		border-radius: 20px;
+		color: #ffffff;
+	}
+}

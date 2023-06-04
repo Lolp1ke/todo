@@ -20,7 +20,10 @@
 		"baseUrl": ".",
 		"paths": {
 			"@assets/*": ["./src/assets/*"],
-			"@UI/*": ["./src/UI/*"]
+			"@context/*": ["./src/context/*"],
+			"@components/*": ["./src/components/*"],
+			"@UI/*": ["./src/UI/*"],
+			"@shared/*": ["../shared/*"]
 		}
 	},
 	"include": ["src"],

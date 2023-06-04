@@ -1,0 +1,95 @@
+@import "@assets/styles/mixins.scss";
+
+.settings {
+	position: relative;
+	@include flex(column, normal, normal, 20px);
+	padding: 30px 0;
+
+	// .settings__profile
+	&__profile {
+		@include flex(column, normal, center, 0);
+		//margin: 20px 0;
+	}
+
+	// .settings__picture-block
+	&__picture-block {
+		position: relative;
+		@include flex(column, normal, center, 10px);
+	}
+
+	// .settings__profile-image
+	&__profile-image {
+		position: relative;
+		width: 128px;
+		border-radius: 50%;
+	}
+
+	// .settings__picture-edit
+	&__picture-edit {
+		@include flex(row, center, center, 0);
+		position: absolute;
+		bottom: 0;
+		left: 60%;
+		background-color: #ffffff;
+		padding: 5px;
+		border-radius: 50%;
+	}
+
+	// .settings__profile-name
+	&__profile-name {
+		font-weight: 500;
+	}
+
+	// .settings__profile-username
+	&__profile-username {
+	}
+
+	// .settings__pages
+	&__pages {
+	}
+
+	// .settings__link
+	&__link {
+		@include flex(row, normal, center, 10px);
+		background-color: #ffffff;
+		padding: 10px 15px;
+		border-radius: 15px;
+		transition: all var(--animation-normal) ease;
+
+		&:hover {
+			background-color: rgba(#24a19c, 0.6);
+		}
+	}
+
+	// .settings__line
+	&__line {
+		width: 90%;
+		height: 2px;
+		background-color: #ffffff;
+		margin: auto auto 0;
+	}
+
+	// .settings__actions
+	&__actions {
+		@include flex(column, normal, normal, 10px);
+	}
+
+	// .settings__action-link
+	&__action-link {
+		@include flex(row, normal, normal, 10px);
+		background-color: #ffffff;
+		padding: 10px 15px;
+		border-radius: 15px;
+		transition: all var(--animation-normal) ease;
+
+		&:hover {
+			background-color: var(--color-text);
+		}
+	}
+
+	// .settings__action
+	&__action {
+		@include flex(row, normal, normal, 10px);
+		align-self: flex-end;
+	}
+}

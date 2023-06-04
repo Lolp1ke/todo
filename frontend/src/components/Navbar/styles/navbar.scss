@@ -1,0 +1,31 @@
+@import "@assets/styles/mixins.scss";
+
+.navbar {
+	position: relative;
+	@include flex(row, space-evenly, center, 20px);
+	padding: 10px 20px;
+	background-color: #ffffff;
+	overflow: hidden;
+
+	// .navbar__link
+	&__link {
+		@include flex(row, center, center, 0);
+		padding: 5px;
+		height: 100%;
+
+		&.active {
+			position: relative;
+			z-index: 0;
+
+			&::before {
+				content: "";
+				z-index: -1;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				bottom: 120%;
+				background-color: #24a19c;
+			}
+		}
+	}
+}

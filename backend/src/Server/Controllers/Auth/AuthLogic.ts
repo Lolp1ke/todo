@@ -14,7 +14,7 @@ class AuthLogic {
 			if (isExist) return res.status(409).json({ message: "User already exist" });
 
 			const hashedPassword: string = hashSync(password);
-			const newUser = new User({ username: username, password: hashedPassword });
+			const newUser = new User({ username: username.toLowerCase(), password: hashedPassword });
 			await newUser.save();
 
 			return res.status(201).json({ message: "User successfully created" });
@@ -28,23 +28,24 @@ class AuthLogic {
 		const { username, password } = req.body;
 
 		try {
-			const currentUser = await User.findOne({ username: username });
+			const currentUser = await User.findOne({ username: username.toLowerCase() });
 			if (!currentUser) return res.status(404).json({ message: "User not found" });
 
 			const checkPassword: boolean = compareSync(password, currentUser.password);
 			if (!checkPassword) return res.status(401).json({ message: "Password is incorrect" });
 
+			const tokenLife: number = 60 * 60 * 24 * 7;
 			const token: string = sign(
 				{
 					id: currentUser.id,
-					expiresIn: 60 * 60 * 24 * 7,
+					expiresIn: tokenLife,
 				},
 				process.env.BACKEND_JWT_SALT!,
 				{
-					expiresIn: 60 * 60 * 24 * 7,
+					expiresIn: tokenLife,
 				}
 			);
-			return res.status(200).json({ message: "Successfully signed in", data: token });
+			return res.status(200).json({ message: "Successfully signed in", data: { token, tokenLife } });
 		} catch (error) {
 			console.log("Error in Controllers/Auth SignIn", error);
 			return res.status(500).json({ message: "Something went wrong" });
