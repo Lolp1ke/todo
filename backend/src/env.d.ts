@@ -12,6 +12,10 @@ declare global {
 			BACKEND_MONGO_DB_PORT: string;
 
 			BACKEND_JWT_SALT: string;
+
+			NODE_ENV: "production" | "dev";
+
+			BACKEND_PORT: string;
 		}
 	}
 }

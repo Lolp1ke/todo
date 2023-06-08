@@ -10,9 +10,11 @@ class TaskRouter {
 		this.router = Router();
 		this.logic = TaskLogic;
 
-		this.router.post("/add", this.logic.add);
-		this.router.post("/get-all", this.logic.getAll);
+		this.router.post("/add", this.logic.addTask);
+		this.router.post("/complete", this.logic.completeTask);
 		this.router.post("/delete", this.logic.deleteTask);
+		this.router.post("/archive", this.logic.archiveTask);
+		this.router.post("/get-all", this.logic.getAll);
 	}
 }
 

@@ -1,4 +1,4 @@
-import express, { Application, json, urlencoded } from "express";
+import express, { Application, json, Request, Response, urlencoded } from "express";
 import cors from "cors";
 
 import AuthRouter from "@routes/Auth/AuthRouter";
@@ -7,7 +7,7 @@ import TaskRouter from "@routes/Task/TaskRouter";
 
 class Server {
 	private server: Application;
-	private readonly _PORT: number = 8000;
+	private readonly _PORT: number = parseInt(process.env.BACKEND_PORT!);
 
 	private AuthRoutes: typeof AuthRouter;
 	private UserRoutes: typeof UserRouter;
@@ -28,6 +28,10 @@ class Server {
 		this.server.use("/api/auth", this.AuthRoutes.router);
 		this.server.use("/api/user", this.UserRoutes.router);
 		this.server.use("/api/task", this.TaskRoutes.router);
+
+		this.server.get("/api/test", (req: Request, res: Response) => {
+			return res.status(200).json({ message: "All good" });
+		});
 	}
 
 	public startServer() {

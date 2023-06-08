@@ -1,12 +1,22 @@
 import { createContext, ReactNode, useContext } from "react";
 import axios, { AxiosResponse } from "axios";
 
-import { IAddTask, IDeleteTask, IGetAll, IGetAllResponse, TTask } from "@shared/types/Task/TaskTypes.ts";
+import {
+	IAddTask,
+	IArchiveTask,
+	ICompleteTask,
+	IDeleteTask,
+	IGetAll,
+	IGetAllResponse,
+	TTask,
+} from "@shared/types/Task/TaskTypes.ts";
 import { useAuth } from "@context/AuthContext.tsx";
 
 interface TaskContextProps {
 	addTask: ({ title, description, time }: IAddTask) => Promise<void>;
 	deleteTask: ({ id }: IDeleteTask) => Promise<void>;
+	completeTask: ({ id, status }: ICompleteTask) => Promise<void>;
+	archiveTask: ({ id, archived }: IArchiveTask) => Promise<void>;
 	getAll: ({ userID }: IGetAll) => Promise<TTask[] | null>;
 }
 
@@ -44,6 +54,28 @@ export function TaskProvider({ children }: { children: ReactNode }) {
 		});
 	}
 
+	async function completeTask({ id, status }: ICompleteTask) {
+		await axios({
+			method: "POST",
+			url: `${import.meta.env.VITE_BACKEND_URL}/api/task/complete`,
+			data: {
+				id: id,
+				status: status,
+			} satisfies ICompleteTask,
+		});
+	}
+
+	async function archiveTask({ id, archived }: IArchiveTask) {
+		await axios({
+			method: "POST",
+			url: `${import.meta.env.VITE_BACKEND_URL}/api/task/archive`,
+			data: {
+				id: id,
+				archived: archived,
+			} satisfies IArchiveTask,
+		});
+	}
+
 	async function getAll() {
 		if (!currentUser) return null;
 
@@ -58,6 +90,6 @@ export function TaskProvider({ children }: { children: ReactNode }) {
 		});
 	}
 
-	const values: TaskContextProps = { addTask, deleteTask, getAll };
+	const values: TaskContextProps = { addTask, deleteTask, getAll, archiveTask, completeTask };
 	return <TaskContext.Provider value={values}>{children}</TaskContext.Provider>;
 }

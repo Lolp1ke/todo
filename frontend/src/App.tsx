@@ -10,6 +10,7 @@ import Home from "./pages/Home/Home.tsx";
 import Auth from "./pages/Auth/Auth.tsx";
 import Settings from "./pages/Settings/Settings.tsx";
 import Account from "./pages/Settings/Account.tsx";
+import Archive from "./pages/Archive/Archive.tsx";
 
 export default function App() {
 	return (
@@ -21,6 +22,7 @@ export default function App() {
 							<Route path={""} element={<Home />} />
 							<Route path={"home"} element={<Home />} />
 						</Route>
+						<Route path={"/archive"} element={<Archive />} />
 						<Route path={"/auth"} element={<Auth />} />
 						<Route path={"/settings"}>
 							<Route path={""} element={<Settings />} />

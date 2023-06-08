@@ -20,6 +20,11 @@
 	color: rgba(#ffffff, 0.8);
 }
 
+::-webkit-scrollbar {
+	width: 0;
+	scrollbar-width: none;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -36,7 +41,7 @@ html {
 	max-width: 375px;
 
 	margin: auto;
-	@include flex(column, normal, normal, 0);
+	@include flex(column, normal, normal, 10px);
 }
 
 h1,

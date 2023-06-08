@@ -8,6 +8,9 @@ export default function Navbar() {
 			<NavLink to={"/"} className="navbar__link" draggable={false}>
 				<img src="/assets/icons/home.svg" alt="home" draggable={false} />
 			</NavLink>
+			<NavLink to={"/archive"} className="navbar__link" draggable={false}>
+				<img src="/assets/icons/archive.svg" alt="archive" draggable={false} />
+			</NavLink>
 			<NavLink to={"/settings"} className="navbar__link" draggable={false}>
 				<img src="/assets/icons/settings.svg" alt="settings" draggable={false} />
 			</NavLink>

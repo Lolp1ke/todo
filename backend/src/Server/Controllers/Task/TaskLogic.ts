@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 
-import { IAddTask, IDeleteTask, IGetAll } from "@shared/types/Task/TaskTypes";
+import { IAddTask, IArchiveTask, ICompleteTask, IDeleteTask, IGetAll } from "@shared/types/Task/TaskTypes";
 
 import Task from "@mongo/Schemas/Task";
 import { ObjectId } from "mongodb";
 
 class TaskLogic {
-	public async add(req: Request<any, any, IAddTask>, res: Response) {
+	public async addTask(req: Request<any, any, IAddTask>, res: Response) {
 		const { userID, title, description, time } = req.body;
 
 		try {
@@ -33,6 +33,36 @@ class TaskLogic {
 			return res.status(200).json({ message: "Task successfully deleted" });
 		} catch (error) {
 			console.log("Error in Controllers/Task deleteTask", error);
+			return res.status(500).json({ message: "Something went wrong" });
+		}
+	}
+
+	public async completeTask(req: Request<any, any, ICompleteTask>, res: Response) {
+		const { id, status } = req.body;
+		try {
+			const currentTask = await Task.findById(id);
+			if (!currentTask) return res.status(404).json({ message: "Task not found" });
+			currentTask.status = status;
+
+			await currentTask.save();
+			return res.status(200).json({ message: "Task successfully deleted" });
+		} catch (error) {
+			console.log("Error in Controllers/Task completeTask", error);
+			return res.status(500).json({ message: "Something went wrong" });
+		}
+	}
+
+	public async archiveTask(req: Request<any, any, IArchiveTask>, res: Response) {
+		const { id, archived } = req.body;
+		try {
+			const currentTask = await Task.findById(id);
+			if (!currentTask) return res.status(404).json({ message: "Task not found" });
+			currentTask.archived = archived;
+
+			await currentTask.save();
+			return res.status(200).json({ message: "Task successfully deleted" });
+		} catch (error) {
+			console.log("Error in Controllers/Task completeTask", error);
 			return res.status(500).json({ message: "Something went wrong" });
 		}
 	}

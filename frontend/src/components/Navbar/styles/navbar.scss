@@ -1,7 +1,9 @@
 @import "@assets/styles/mixins.scss";
 
 .navbar {
-	position: relative;
+	position: fixed;
+	bottom: 0;
+	width: 375px;
 	@include flex(row, space-evenly, center, 20px);
 	padding: 10px 20px;
 	background-color: #ffffff;

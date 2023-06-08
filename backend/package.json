@@ -1,7 +1,10 @@
 {
 	"main": "src/index.ts",
+	"license": "MIT",
 	"scripts": {
-		"start": "nodemon src/index.ts"
+		"start": "nodemon src/index.ts",
+		"production": "set NODE_ENV=production && nodemon src/index.ts",
+		"build": "npx tsc --project tsconfig.json"
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "^2.24.0",

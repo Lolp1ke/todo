@@ -7,6 +7,8 @@ interface TaskSchemaProps {
 	userID: ObjectId;
 	title: string;
 	description: string;
+	status: boolean;
+	archived: boolean;
 	time: number;
 	createdAt: number;
 	alteredAt: number;
@@ -28,6 +30,18 @@ const TaskSchema = new Schema<TaskSchemaProps>({
 		type: String,
 		required: false,
 		unique: false,
+	},
+	status: {
+		type: Boolean,
+		required: true,
+		unique: false,
+		default: false,
+	},
+	archived: {
+		type: Boolean,
+		required: true,
+		unique: false,
+		default: false,
 	},
 	time: {
 		type: Number,

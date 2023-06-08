@@ -2,7 +2,10 @@
 
 .tasks {
 	position: relative;
+	height: 75vh;
+	overflow: auto;
 	@include flex(column, normal, normal, 20px);
+	border-radius: 20px;
 
 	&__add {
 		@include flex(column, normal, normal, 5px);
@@ -63,6 +66,29 @@
 			aspect-ratio: 1 / 1;
 		}
 	}
+
+	&__list {
+		@include flex(column, normal, normal, 0);
+		background-color: #ffffff;
+		padding: 20px;
+		border-radius: 20px;
+	}
+
+	&__tasks {
+		position: relative;
+		@include flex(column, normal, normal, 20px);
+		overflow: hidden;
+		height: 0;
+		opacity: 0;
+		visibility: hidden;
+		transition: all var(--animation-fast) ease;
+
+		&.active {
+			opacity: 1;
+			height: 100%;
+			visibility: visible;
+		}
+	}
 }
 
 .task {
@@ -71,6 +97,11 @@
 	background-color: #ffffff;
 	border-radius: 15px;
 	overflow: hidden;
+	border: 1px solid #626262;
+
+	&:first-child {
+		margin-top: 20px;
+	}
 
 	// .task__decoration
 	&__decoration {
